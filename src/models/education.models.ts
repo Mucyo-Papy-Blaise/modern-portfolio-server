@@ -1,15 +1,15 @@
 import mongoose,{ Schema } from "mongoose";
 
 interface Ieducation {
-    startYear: string,
-    endYear:string,
+    startYear: Date,
+    endYear:Date,
     program: string,
     school: string,
     degree: string
 }
 const educationSchema = new Schema<Ieducation>({
-    startYear:{type: String, require: true},
-    endYear:{type:String, required: true},
+    startYear:{type: Date, require: true},
+    endYear:{type:Date, required: true},
     program:{type: String, require: true},
     school:{type: String, require: true},
     degree:{type: String, require: true},
