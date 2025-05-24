@@ -44,15 +44,26 @@ app.post('/experience', async (req:Request, res:Response)=>{
         company,
         role,
         employment,
-        startDate,
-        endDate,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
         description
        })
        res.status(201).json({message:'experience uploaded successfully!'})
-    } catch (error) {
-        res.status(500).json({message:'failed to create experience'})
+    } catch (error: any) {
+        console.log('Failed to create experience', error.message)
+        res.status(500).json({message:'failed to create experience', error: error.message})
     }
 })
+
+app.get('/experience', async (req:Request, res:Response)=>{
+    try {
+        const experiences = await experience.find()
+        res.status(201).json(experiences)
+    } catch (error) {
+        res.status(500).json({message: 'Failed to Fetch experiences Data'})
+    }
+})
+
 const PORT = env.port
 app.listen(PORT, async()=>{
     try {
