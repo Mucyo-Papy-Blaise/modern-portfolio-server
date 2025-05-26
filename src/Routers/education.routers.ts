@@ -29,4 +29,14 @@ router.get('/',async(req:Request, res:Response)=>{
     }
 })
 
+router.delete('/:id',async(req: Request, res: Response)=>{
+    try {
+        const {id} = req.params
+        await education.findOneAndDelete({_id: id})
+        res.status(201).json({message:'Education deleted successfully!'})
+    } catch (error: any) {
+        res.status(500).json({message:'Failed to Delete Education!', error:error.message})
+    }
+})
+
 export default router
