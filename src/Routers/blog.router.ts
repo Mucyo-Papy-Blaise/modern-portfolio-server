@@ -9,7 +9,6 @@ router.use(express.json())
 router.post('/',uploadSingle('image', cloudinary) ,async(req: Request, res: Response)=>{
     try {
         const {title,summary,content,author,readTime,category,image, tags} = req.body
-      
         const tagsPars = JSON.parse(tags)
         await blog.create({
             title,
