@@ -6,15 +6,22 @@ router.use(express.json())
 
 router.post('/',async(req: Request, res:Response)=>{
     try {
-        const {company,role,employment,startDate,endDate,description} =  req.body
-        await experience.create({
+        const {company,role,employment,startDate,endDate,current,description} =  req.body
+        const experienceData: any = {
             company,
             role,
             employment,
             startDate: new Date(startDate),
-            endDate: new Date(endDate),
-            description,
-        })
+            current,
+            description
+        }
+
+        if(!current || endDate){
+            experienceData.endDate = new Date(endDate)
+        }
+        await experience.create(experienceData)
+        res.status(201).json({message:'Experience Created Successfully!'})
+
     res.status(201).json({message:'experience created successfully!'})
     } catch (error: any) {
         res.status(500).json({message:'Failed to create experience!', error:error.message})
@@ -30,4 +37,13 @@ router.get('/', async(req: Request, res: Response)=>{
     }
 })
 
+router.delete('/:id', async(req:Request, res:Response)=>{
+    try {
+        const {id} = req.params
+        await experience.findOneAndDelete({_id: id})
+        res.status(201).json({ message: 'Education deleted successfully!' });
+    } catch (error: any) {
+        res.status(500).json({message:'Failed to delete experience', error: error.message})
+    }
+})
 export default router

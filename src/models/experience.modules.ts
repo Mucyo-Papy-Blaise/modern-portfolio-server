@@ -5,7 +5,8 @@ interface Iexperience {
     role: string,
     employment: string,
     startDate: Date,
-    endDate: Date,
+    endDate?: Date,
+    current: boolean,
     description: string,
 }
 
@@ -14,7 +15,8 @@ const experienceSshema =  new Schema<Iexperience>({
     role: {type: String, required: true},
     employment: {type: String, required: true},
     startDate: {type: Date, required: true},
-    endDate: {type: Date, required: true},
+    endDate: {type: Date, required: function () {return !this.current}},
+    current: {type: Boolean, required: false},
     description: {type: String, required: true},
 })
 
