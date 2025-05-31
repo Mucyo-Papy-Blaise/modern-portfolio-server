@@ -26,7 +26,7 @@ const skill_router_1 = __importDefault(require("./Routers/skill.router"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://mucyo-papy-blaise.netlify.app/'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 app.use('/education', education_routers_1.default);
