@@ -13,7 +13,7 @@ import skillRoutes from './Routers/skill.router'
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: ['http://localhost:5173','https://mucyo-papy-blaise.netlify.app/'],
+    origin: ['http://localhost:5173','https://mucyo-papy-blaise.netlify.app'],
     methods: ['GET','POST','PUT','DELETE','PATCH']
 }))
 
