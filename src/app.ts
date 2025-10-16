@@ -26,6 +26,10 @@ app.use('/service', serviceRoutes)
 app.use('/blog', blogRoutes)
 app.use('/skill', skillRoutes)
 
+app.get('/test', (req, res) => {
+  res.send('✅ Hello from /test');
+});
+
 const PORT = env.port
 app.listen(PORT, async()=>{
     try {
